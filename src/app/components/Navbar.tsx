@@ -2,7 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { auth, signIn, signOut } from "../../../auth";
-import { redirect } from "next/dist/server/api-utils";
+
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 const Navbar = async () => {
   const session = await auth();
@@ -16,15 +17,19 @@ const Navbar = async () => {
         <div className="flex items-center gap-4">
           {session && session?.user ? (
             <>
-              <Link href="/startup/create">Create</Link>
+              <Link href="/startup/create">
+                <span className="max-sm:hidden">Create</span>
+              </Link>
               <form
                 action={async () => {
                   "use server";
                   await signOut({ redirectTo: "/" });
                 }}
               >
+                {" "}
                 <button type="submit">
-                  <span>Sign out</span>
+                  <span className="max-sm:hidden">Logout</span>
+                  {/* <LogOut className="size-6 sm:hidden text-red-500" /> */}
                 </button>
               </form>
 
@@ -39,7 +44,14 @@ const Navbar = async () => {
               </Link>
             </>
           ) : (
-            <button onClick={signIn}>Sign in</button>
+            <form
+              action={async () => {
+                "use server";
+                await signIn("github");
+              }}
+            >
+              <button type="submit">Sign In</button>
+            </form>
           )}
         </div>
       </nav>
