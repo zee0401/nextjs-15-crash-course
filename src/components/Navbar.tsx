@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import { auth, signIn, signOut } from "../../../auth";
+import { auth, signIn, signOut } from "../../auth";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
