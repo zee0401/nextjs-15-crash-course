@@ -7,6 +7,7 @@ export default function Home({
   searchParams: { query?: string };
 }) {
   const query = searchParams?.query || "";
+
   return (
     <>
       <section className="pink_container">
@@ -23,7 +24,7 @@ export default function Home({
       </section>
 
       <section className="section_container">
-        <p className="text-30-semibold">
+        <p className="tesanxt-30-semibold">
           {query ? `Search results for "${query}"` : "All Startups"}
         </p>
 
