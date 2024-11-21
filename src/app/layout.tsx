@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import Navbar from "../components/Navbar";
+import "easymde/dist/easymde.min.css";
 
 const workSans = localFont({
   src: [
@@ -66,7 +67,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="font-work-sans">
+      <body className={workSans.variable}>
         <Navbar />
 
         {children}
