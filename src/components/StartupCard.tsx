@@ -1,23 +1,14 @@
 /* eslint-disable @next/next/no-img-element */
+import { formatDate } from "@/lib/utils";
 import { EyeIcon } from "lucide-react";
-import Image from "next/image";
 import Link from "next/link";
-import React from "react";
-import { Button } from "./ui/Button";
-import { formatDate } from "../lib/utils";
+import Image from "next/image";
+import { Button } from "@/components/ui/button";
+import { Author, Startup } from "@/sanity/types";
 
-type StartupCardType = {
-  _createdAt: Date;
-  views: number;
-  author: string;
-  title: string;
-  category: string;
-  _id: string;
-  image: string;
-  description: string;
-};
+export type StartupTypeCard = Omit<Startup, "author"> & { author?: Author };
 
-const StartupCard = ({ post }: { post: StartupCardType }) => {
+const StartupCard = ({ post }: { post: StartupTypeCard }) => {
   const {
     _createdAt,
     views,
@@ -32,7 +23,7 @@ const StartupCard = ({ post }: { post: StartupCardType }) => {
   return (
     <li className="startup-card group">
       <div className="flex-between">
-        <p className="startup_card_date">{formatDate(_createdAt)}</p>
+        <p className="startup_card_date">{formatDate(new Date(_createdAt))}</p>
         <div className="flex gap-1.5">
           <EyeIcon className="size-6 text-primary" />
           <span className="text-16-medium">{views}</span>
@@ -50,8 +41,8 @@ const StartupCard = ({ post }: { post: StartupCardType }) => {
         </div>
         <Link href={`/user/${author?._id}`}>
           <Image
-            src={author.image!}
-            alt={author.name!}
+            src={author?.image ?? "/default-avatar.png"}
+            alt={author?.name ?? "avatar"}
             width={48}
             height={48}
             className="rounded-full"
@@ -67,10 +58,10 @@ const StartupCard = ({ post }: { post: StartupCardType }) => {
 
       <div className="flex-between gap-3 mt-5">
         <Link href={`/?query=${category?.toLowerCase()}`}>
-          <p className="text-16-medium">category</p>
+          <p className="text-16-medium">{category}</p>
         </Link>
         <Button className="startup-card_btn" asChild>
-          <Link href={`/startup/`}>Details</Link>
+          <Link href={`/startup/${_id}`}>Details</Link>
         </Button>
       </div>
     </li>
