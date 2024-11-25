@@ -1,4 +1,5 @@
 import React from "react";
+import Ping from "./Ping";
 
 const Views = ({ id }: { id: string }) => {
   return (
