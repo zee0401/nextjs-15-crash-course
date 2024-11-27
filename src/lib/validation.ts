@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-export const startupSchema = z.object({
+export const startupFormSchema = z.object({
   title: z.string().min(3).max(100),
   description: z.string().min(3).max(5000),
   category: z.string().min(3).max(100),
