@@ -3,6 +3,8 @@ import localFont from "next/font/local";
 import "./globals.css";
 import "easymde/dist/easymde.min.css";
 import Navbar from "../components/Navbar";
+import { Toast } from "@radix-ui/react-toast";
+import { Toaster } from "@/components/ui/toaster";
 
 const workSans = localFont({
   src: [
@@ -70,6 +72,7 @@ export default function RootLayout({
       <body className={workSans.variable}>
         <Navbar />
         {children}
+        <Toaster />
       </body>
     </html>
   );

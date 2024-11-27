@@ -9,10 +9,13 @@ import { Button } from "./ui/button";
 import { Send } from "lucide-react";
 import { z } from "zod";
 import { startupFormSchema } from "@/lib/validation";
+import { useToast } from "@/hooks/use-toast";
 
 const StartupForm = () => {
   const [error, setError] = useState<Record<string, string>>({});
   const [pitch, setPitch] = React.useState("");
+
+  const { toast } = useToast();
 
   const handleFormSubmit = async (prevState: any, formData: FormData) => {
     try {
@@ -20,21 +23,47 @@ const StartupForm = () => {
         title: formData.get("title"),
         description: formData.get("description"),
         category: formData.get("category"),
-        link: formData.get("imglink"),
+        link: formData.get("link"),
         pitch,
       };
 
       await startupFormSchema.parseAsync(formValues);
 
-      console.log("form submitted");
+      // const result = await createPitch(prevState, formData, pitch);
+
+      // if (result.status == "SUCCESS") {
+      //   toast({
+      //     title: "Success",
+      //     description: "Your startup pitch has been created successfully",
+      //   });
+
+      //   router.push(`/startup/${result._id}`);
+      // }
+
+      // return result;
+      console.log("form submitted", formValues);
     } catch (error) {
       if (error instanceof z.ZodError) {
         const fieldErrors = error.flatten().fieldErrors;
 
         setError(fieldErrors as unknown as Record<string, string>);
 
+        console.log("error", error);
+        toast({
+          title: "Error",
+          description: "Please check the inputs in the form",
+          variant: "destructive",
+        });
+
         return { ...prevState, error: "Validation Failed", status: "ERROR" };
       }
+
+      toast({
+        title: "Error",
+        description: "Something went wrong",
+        variant: "destructive",
+      });
+
       return {
         ...prevState,
         error: "Something went wrong",
@@ -96,17 +125,17 @@ const StartupForm = () => {
         )}
       </div>
       <div>
-        <label htmlFor="imglink" className="startup-form_label">
-          Image Link
+        <label htmlFor="link" className="startup-form_label">
+          Image URL
         </label>
         <Input
+          id="link"
+          name="link"
           className="startup-form_input"
-          id="imglink"
-          type="text"
-          name="imglink"
-          placeholder="Image Link"
           required
+          placeholder="Startup Image URL"
         />
+
         {error.link && <p className="startup-form_error">{error.link}</p>}
       </div>
 
