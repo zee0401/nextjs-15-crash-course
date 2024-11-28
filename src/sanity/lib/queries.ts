@@ -45,3 +45,18 @@ export const STARTUP_BY_GITHUB_ID_QUERY =
   email, 
   bio
 }`);
+
+export const STARTUP_BY_AUTHORID_QUERY =
+  defineQuery(`*[_type == "author" && id == $id][0]{
+   _id, 
+  title, 
+  slug,
+  _createdAt,
+  author -> {
+    _id, name, image, bio
+  }, 
+  views,
+  description,
+  category,
+  image,
+  }`);
