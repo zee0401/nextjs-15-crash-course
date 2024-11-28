@@ -1,7 +1,9 @@
+"use server";
+
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { writeClient } from "@/sanity/lib/writeClient";
-import { auth } from "../../auth";
-import { parseServerActionResponse } from "./utils";
+import { auth } from "../../../auth";
+import { parseServerActionResponse } from "../../lib/utils";
 import slugify from "slugify";
 
 export const createPitchAction = async (

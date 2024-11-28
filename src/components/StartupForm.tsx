@@ -10,7 +10,7 @@ import { Send } from "lucide-react";
 import { z } from "zod";
 import { startupFormSchema } from "@/lib/validation";
 import { useToast } from "@/hooks/use-toast";
-import { createPitchAction } from "@/lib/actions";
+import { createPitchAction } from "@/app/server/actions";
 import { useRouter } from "next/navigation";
 
 const StartupForm = () => {
