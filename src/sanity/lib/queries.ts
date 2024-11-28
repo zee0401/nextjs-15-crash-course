@@ -47,16 +47,12 @@ export const STARTUP_BY_GITHUB_ID_QUERY =
 }`);
 
 export const STARTUP_BY_AUTHORID_QUERY =
-  defineQuery(`*[_type == "author" && id == $id][0]{
-   _id, 
-  title, 
-  slug,
-  _createdAt,
-  author -> {
-    _id, name, image, bio
-  }, 
-  views,
-  description,
-  category,
-  image,
+  defineQuery(`*[_type == "author" && _id == $id][0]{
+   _id,
+    id,
+    name,
+    username,
+    email,
+    image,
+    bio
   }`);
