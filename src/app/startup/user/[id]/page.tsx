@@ -10,8 +10,6 @@ import { StartupCardSkeleton } from "@/components/StartupCardSkeleton";
 const page = async ({ params }: { params: Promise<{ id: string }> }) => {
   const id = (await params).id;
 
-  console.log(id);
-
   const session = await auth();
   if (!session) {
     return <div>You need to be logged in to view this page.</div>;

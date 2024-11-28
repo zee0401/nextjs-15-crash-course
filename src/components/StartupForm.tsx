@@ -51,7 +51,6 @@ const StartupForm = () => {
 
         setError(fieldErrors as unknown as Record<string, string>);
 
-        console.log("error", error);
         toast({
           title: "Error",
           description: "Please check the inputs in the form",
