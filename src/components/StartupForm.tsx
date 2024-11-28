@@ -45,7 +45,6 @@ const StartupForm = () => {
       }
 
       return result;
-      console.log("form submitted", formValues);
     } catch (error) {
       if (error instanceof z.ZodError) {
         const fieldErrors = error.flatten().fieldErrors;
