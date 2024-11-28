@@ -56,3 +56,18 @@ export const STARTUP_BY_AUTHORID_QUERY =
     image,
     bio
   }`);
+
+export const AUTHOR_STARTUP_QUERY =
+  defineQuery(`*[_type =="startup" && author._ref == $id] | order(_createdAt desc){
+   _id, 
+  title, 
+  slug,
+  _createdAt,
+  author -> {
+    _id, name, image, bio
+  }, 
+  views,
+  description,
+  category,
+  image,
+  }`);
