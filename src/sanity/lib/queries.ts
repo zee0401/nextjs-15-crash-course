@@ -72,6 +72,18 @@ export const AUTHOR_STARTUP_QUERY =
   image,
   }`);
 
+export const AUTHOR_BY_ID_QUERY = defineQuery(`
+    *[_type == "author" && _id == $id][0]{
+        _id,
+        id,
+        name,
+        username,
+        email,
+        image,
+        bio
+    }
+    `);
+
 export const PLAYLIST_BY_SLUG_QUERY =
   defineQuery(`*[_type == "playlist" && slug.current == $slug][0]{
   _id,
