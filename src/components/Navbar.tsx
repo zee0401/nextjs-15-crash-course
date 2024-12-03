@@ -4,6 +4,7 @@ import React from "react";
 import { auth, signIn, signOut } from "../../auth";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { LogOut } from "lucide-react";
 
 const Navbar = async () => {
   const session = await auth();
@@ -35,7 +36,7 @@ const Navbar = async () => {
                 {" "}
                 <button type="submit">
                   <span className="max-sm:hidden">Logout</span>
-                  {/* <LogOut className="size-6 sm:hidden text-red-500" /> */}
+                  <LogOut className="size-6 sm:hidden text-red-500" />
                 </button>
               </form>
 
